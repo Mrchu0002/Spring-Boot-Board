@@ -1,0 +1,43 @@
+<!--
+<link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}" />
+-->
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+	<table class="table">
+	    <thead class="table-dark">
+	        <tr>
+				<th>번호</th>
+	            <th>제목</th>
+	            <th>작성일시</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	        <tr th:each="question, loop : ${questionList}">
+				<td th:text="${loop.count}"></td>
+	            <td><a th:href="@{|/question/detail/${question.id}|}" th:text="${question.subject}"></a></td>
+	            <td th:text="${#temporals.format(question.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+	        </tr>
+	    </tbody>
+	</table>
+</div>
+</html>
+<!-- 
+	1)if 문, else if 문과 같은 분기문은 다음과 같이 사용한다.
+	  th:if="${question != null}"
+
+	2)th:each 반복문 속성은 자바의 for each 문과 유사하다.
+	  th:each="question : ${questionList}"
+	
+	2-1)반복문 속성은 다음과 같이 사용할 수도 있다.
+		th:each="question, loop : ${questionList}"
+	
+	@여기서 추가한 loop 객체를 이용하여 루프 내에서 다음과 같이 사용할 수 있다.
+		loop.index: 루프의 순서(루프의 반복 순서, 0부터 1씩 증가)
+		loop.count: 루프의 순서(루프의 반복 순서, 1부터 1씩 증가)
+		loop.size: 반복 객체의 요소 개수(예를 들어 questionList의 요소 개수)
+		loop.first: 루프의 첫 번째 순서인 경우 true
+		loop.last: 루프의 마지막 순서인 경우 true
+		loop.odd: 루프의 홀수 번째 순서인 경우 true
+		loop.even: 루프의 짝수 번째 순서인 경우 true
+		loop.current: 현재 대입된 객체(여기서는 question과 동일)
+ -->

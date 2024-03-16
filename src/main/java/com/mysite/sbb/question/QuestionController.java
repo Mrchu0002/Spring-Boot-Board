@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @RequestMapping("/question")
 @RequiredArgsConstructor //퀘스트레포지토리 생성자 사용을 위해 어노텐션을 적용
@@ -39,4 +41,14 @@ public class QuestionController {
 		model.addAttribute("question",question);
         return "question_detail";
     }
+	
+	public String getMethodName(@RequestParam String param) {
+		return new String();
+	}
+	
+	@GetMapping("/create")
+	public String questionCreate() {
+		return "question_form";
+		
+	}
 }
